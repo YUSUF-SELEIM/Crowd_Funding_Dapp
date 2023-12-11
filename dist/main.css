@@ -1116,8 +1116,8 @@ input:checked + .toggle-bg {
   left: 0px;
 }
 
-.left-\[35\.5\%\] {
-  left: 35.5%;
+.left-\[39\.5\%\] {
+  left: 39.5%;
 }
 
 .right-0 {
@@ -1157,8 +1157,8 @@ input:checked + .toggle-bg {
   margin-right: auto;
 }
 
-.-mt-44 {
-  margin-top: -11rem;
+.-mt-60 {
+  margin-top: -15rem;
 }
 
 .mb-1 {
@@ -1171,6 +1171,14 @@ input:checked + .toggle-bg {
 
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+
+.me-2 {
+  margin-inline-end: 0.5rem;
+}
+
+.me-3 {
+  margin-inline-end: 0.75rem;
 }
 
 .mt-2 {
@@ -1229,10 +1237,6 @@ input:checked + .toggle-bg {
   height: 2.25rem;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -1247,6 +1251,11 @@ input:checked + .toggle-bg {
 
 .w-64 {
   width: 16rem;
+}
+
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .w-full {
@@ -1301,6 +1310,16 @@ input:checked + .toggle-bg {
 
 .transform-none {
   transform: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
 
 .cursor-default {
@@ -1371,8 +1390,8 @@ input:checked + .toggle-bg {
   justify-content: space-around;
 }
 
-.justify-items-center {
-  justify-items: center;
+.gap-10 {
+  gap: 2.5rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
