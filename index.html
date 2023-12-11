@@ -4,24 +4,25 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./main.css">
 	<script src="https://c0f4f41c-2f55-4863-921b-sdk-docs.github.io/cdn/metamask-sdk.js"></script>
-    <script> 
-        const MMSDK = new MetaMaskSDK.MetaMaskSDK()
-        // Because init process of the MetaMaskSDK is async.
-        setTimeout(() => {
-            const ethereum = MMSDK.getProvider() // You can also access via window.ethereum
-            // Request accounts
-            ethereum.request({ method: 'eth_requestAccounts' })
-                .then((accounts) => {
-                    // Accounts have been retrieved
-                    console.log('MetaMask Accounts:', accounts);
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error('MetaMask Error:', error);
-                });
-        }, 0) 
-   </script>
+	<script>
+		const MMSDK = new MetaMaskSDK.MetaMaskSDK()
+		// Because init process of the MetaMaskSDK is async.
+		setTimeout(() => {
+			const ethereum = MMSDK.getProvider() // You can also access via window.ethereum
+			// Request accounts
+			ethereum.request({ method: 'eth_requestAccounts' })
+				.then((accounts) => {
+					// Accounts have been retrieved
+					console.log('MetaMask Accounts:', accounts);
+				})
+				.catch((error) => {
+					// Handle error
+					console.error('MetaMask Error:', error);
+				});
+		}, 0) 
+	</script>
 	<script>
 		// On page load or when changing themes, best to add inline in `head` to avoid FOUC
 		if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -31,30 +32,108 @@
 		}
 	</script>
 	<title>Crowd Funding</title>
-<script defer src="bundle.js"></script></head>
+<link rel="icon" href="donation.png"><script defer src="bundle.js"></script></head>
 
-<body id="body" class="h-screen flex flex-col bg-gray-100 dark:bg-gray-800">
-	<header class="flex items-center justify-between px-4 py-2">
+<body id="body" class=" flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-700">
+	<header id="header" class="flex items-center justify-between px-4 py-2">
 		<div class="flex items-center justify-around">
 			<img id="logo" src="./assets/donation.png" style="height: 3rem;">
 			<div class="text-2xl text-gray-800 dark:text-gray-100 mt-3 italic"><span class="text-red-500">Fund </span>
-				<span class="text-green-500">Me </span><span class="text-yellow-500"> Please</span></div>
+				<span class="text-green-500">Me </span><span class="text-yellow-500"> Please
+					<hr class="p-2 text-green-800">
+				</span>
+			</div>
 		</div>
-		<button id="theme-toggle" type="button"
-			class="text-gray-500 dark:text-gray-400 rounded-lg text-sm p-2.5 hover:animate-spin">
-			<svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg">
-				<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-			</svg>
-			<svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg">
-				<path
-					d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-					fill-rule="evenodd" clip-rule="evenodd"></path>
-			</svg>
-		</button>
+		<div class="flex justify-around items-center">
+			<button type="button" id="create-campaign"
+				class="text-gray-700 hover:text-blue-700 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center  dark:text-blue-500 dark:hover:text-white  ">
+				<?xml version="1.0" encoding="utf-8"?>
+				<svg width="40px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<path opacity="0.5"
+						d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" />
+					<path
+						d="M12.75 9C12.75 8.58579 12.4142 8.25 12 8.25C11.5858 8.25 11.25 8.58579 11.25 9L11.25 11.25H9C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75H11.25V15C11.25 15.4142 11.5858 15.75 12 15.75C12.4142 15.75 12.75 15.4142 12.75 15L12.75 12.75H15C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25H12.75V9Z" />
+				</svg>
+				<span class="sr-only">Icon description</span>
+			</button>
+			<button id="theme-toggle" type="button"
+				class="text-gray-500 dark:text-gray-400 rounded-lg text-sm p-2.5 hover:animate-spin">
+				<svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+					xmlns="http://www.w3.org/2000/svg">
+					<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+				</svg>
+				<svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+					xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+						fill-rule="evenodd" clip-rule="evenodd"></path>
+				</svg>
+			</button>
+		</div>
 	</header>
-	<div class="text-4xl"></div>
+	<section id="campaigns-container" class="w-fit grid grid-cols-2 p-8 gap-5 justify-center items-center ">
+	</section>
+	<section id="create-campaign-overlay"
+		class="hidden fixed -mt-60 top-[50%] bottom-[50%] left-[39.5%] shadow-xl z-10">
+		<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+			<div class="flex flex-row-reverse">
+				<button id="close-overlay"
+					class="text-gray-700 hover:text-blue-700 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center  dark:text-blue-500 dark:hover:text-white  ">
+					<svg width="30px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+						<path opacity="0.5"
+							d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" />
+						<path
+							d="M8.96967 8.96967C9.26256 8.67678 9.73744 8.67678 10.0303 8.96967L12 10.9394L13.9697 8.96969C14.2626 8.6768 14.7374 8.6768 15.0303 8.96969C15.3232 9.26258 15.3232 9.73746 15.0303 10.0304L13.0607 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0304 15.0303C9.73746 15.3232 9.26258 15.3232 8.96969 15.0303C8.6768 14.7374 8.6768 14.2626 8.96969 13.9697L10.9394 12L8.96967 10.0303C8.67678 9.73744 8.67678 9.26256 8.96967 8.96967Z" />
+					</svg>
+				</button>
+			</div>
+			<div class="px-5 py-2 ">
+				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Create Campaign</h5>
+				<div class="flex flex-col items-center max-w-sm mx-auto py-3">
+					<div class="mb-5">
+						<label for="campaigns-name-field"
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Campaign
+							Name</label>
+						<input type="text" id="campaigns-name-field"
+							class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+							placeholder="Charity" required>
+					</div>
+					<div class="mb-5">
+						<label for="creators-address-field"
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+							Account Address</label>
+						<input type="text" id="creators-address-field"
+							class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+							required>
+					</div>
+					<div class="mb-5">
+						<label for="goal-amount"
+							class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Goal Amount</label>
+						<input type="number" id="goal-amount"
+							class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+							required>
+					</div>
+					<!-- <button 
+						id="create-campaign-button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button> -->
+					<button id="create-campaign-button" type="button"
+						class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
+						<div id="loading-overlay" class="hidden">
+							<svg aria-hidden="true" role="status" class="inline w-4 h-4 me-3 text-white animate-spin"
+								viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+									fill="#E5E7EB" />
+								<path
+									d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+									fill="currentColor" />
+							</svg>
+						</div>
+						Create
+					</button>
+				</div>
+			</div>
+		</div>
+	</section>
 	<script>
 		var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 		var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
