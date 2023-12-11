@@ -1,4 +1,5 @@
 node_modules
-./src/abis/Crowd_Funding.json
-./src/index.js
-./src/crowdFunding.sol
+src/utils/Web3Provider.js
+src/abis/Crowd_Funding.json
+src/index.js
+src/crowdFunding.sol
