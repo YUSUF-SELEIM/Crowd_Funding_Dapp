@@ -1,3 +1,4 @@
 node_modules
-Crowd_Funding.json
-index.js
+./src/abis/Crowd_Funding.json
+./src/index.js
+./src/crowdFunding.sol
