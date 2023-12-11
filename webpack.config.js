@@ -40,10 +40,12 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: "./src/template.html",
+			favicon: "./src/assets/donation.png",
 		}),
 		new CopyPlugin({
 			patterns: [
 			  { from: "./src/assets", to: "assets" },
+			  { from: "./src/main.css", to: "" },
 			],
 		  }),
 	],
